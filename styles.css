@@ -18,8 +18,10 @@ body {
   display: grid;
   place-items: center;
 }
+.foto{
+  height: 300px;
+}
 .grilla {
-  width: 100vw;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -148,8 +150,11 @@ body {
     align-items: center;
     justify-content: center;
   }
-  .logo {
-    justify-content: center;
+  .fotos{
+    max-width:100%;
+  }
+  .foto{
+    max-width:100%;
   }
 }
 
