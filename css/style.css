@@ -1094,7 +1094,7 @@ h6 {
   color: #ffffff;
   background: #ff69b4;
 }
-@media (max-width: 575.98px) {
+@media (max-width: 900px) {
   #contador {
     position: relative;
     flex-direction: column;
