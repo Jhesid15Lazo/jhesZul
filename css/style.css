@@ -1094,6 +1094,12 @@ h6 {
   color: #ffffff;
   background: #ff69b4;
 }
+@media (max-width: 575.98px) {
+  #contador {
+    position: relative;
+    flex-direction: column;
+  }
+}
 #contador {
     display: flex;
     align-items: center;
