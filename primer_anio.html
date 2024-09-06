@@ -138,23 +138,35 @@
         <div class="row" id="gallery"></div>
         <div>
           <p>
-            Mi Preshosha, cuando te conoci no me imagine que estarias a mi lado, fue un año en donde logramos conocernos
-            un año en donde logramos entender que podemos estar juntos, un año que nos enamoramos, dejamos todo atras y fuimos
-            viendo que podemos tener una linda vida juntos, cuidamos la relación y nos demostramos que queremos estar juntos
-            me demostraste que me amas, que me quieres, y de esa forma llegaste a mi corazón. Zulma me sorprendiste, me llenaste de 
-            tanto cariño, respeto, y lealtad que te llevaste mi corazón. No te busque y tu tampoco me buscaste, nos encontramos.
-            <br>
-            Mientras miraba las fotografias me acordaba que aveces teniamos inseguridades que podian hacernos tambalear, note que si,
-            a mi me fueron haciendo tambalear, porque yo buscaba un cariño verdadero, uno solo para mi. Y me demostraste que eres la persona
-            que puede darme ese amor. Un amor que yo quiero, uno puro, ese trato que me das ahora y me diste antes me encanta, estoy feliz de que estes a mi lado.
-            <br>
-            Sé que fue un año de muchas alegrias y tambien hubo momentos en las que logramos lastimarnos, pero fuimos comprometidos.
-            Me acuerdo de la promesa cuando tomamos ese jugo de naranja, nos pusimos reglas para estar juntos, tenemos actualmente reglas al momento
-            de enojarnos, es algo que no pense tener en mi vida. Me encanta, me hace notar que quieres que este a tu lado.
-            <br>
-            Quiero decirte que amo lo que eres y haces, amo quien eres, amo como me amas, en serio te llevaste mi corazon, y es tuyo.
-            Quiero lograr amarte mucho más, eres mi princesa, mi bella niña que pienso proteger, y amar, lograste todo, soy tuyo amor.
-            Te amo...
+            Mi Preshosha, cuando te conoci no me imagine que estarias a mi lado,
+            fue un año en donde logramos conocernos un año en donde logramos
+            entender que podemos estar juntos, un año que nos enamoramos,
+            dejamos todo atras y fuimos viendo que podemos tener una linda vida
+            juntos, cuidamos la relación y nos demostramos que queremos estar
+            juntos me demostraste que me amas, que me quieres, y de esa forma
+            llegaste a mi corazón. Zulma me sorprendiste, me llenaste de tanto
+            cariño, respeto, y lealtad que te llevaste mi corazón. No te busque
+            y tu tampoco me buscaste, nos encontramos.
+            <br />
+            Mientras miraba las fotografias me acordaba que aveces teniamos
+            inseguridades que podian hacernos tambalear, note que si, a mi me
+            fueron haciendo tambalear, porque yo buscaba un cariño verdadero,
+            uno solo para mi. Y me demostraste que eres la persona que puede
+            darme ese amor. Un amor que yo quiero, uno puro, ese trato que me
+            das ahora y me diste antes me encanta, estoy feliz de que estes a mi
+            lado.
+            <br />
+            Sé que fue un año de muchas alegrias y tambien hubo momentos en las
+            que logramos lastimarnos, pero fuimos comprometidos. Me acuerdo de
+            la promesa cuando tomamos ese jugo de naranja, nos pusimos reglas
+            para estar juntos, tenemos actualmente reglas al momento de
+            enojarnos, es algo que no pense tener en mi vida. Me encanta, me
+            hace notar que quieres que este a tu lado.
+            <br />
+            Quiero decirte que amo lo que eres y haces, amo quien eres, amo como
+            me amas, en serio te llevaste mi corazon, y es tuyo. Quiero lograr
+            amarte mucho más, eres mi princesa, mi bella niña que pienso
+            proteger, y amar, lograste todo, soy tuyo amor. Te amo...
           </p>
           <h4>TE AMO MI VIDA</h4>
         </div>
@@ -193,13 +205,34 @@
         </script>
 
         <script>
-          const audio = new Audio("./audio/jachamallku.mp3");
+          const audioFiles = [
+            "./audio/jachamallku.mp3",
+            "./audio/sebastianYatra.mp3",
+          ];
+
+          // Crear un array de objetos Audio
+          const audioArray = audioFiles.map((file) => new Audio(file));
+          function playAllAudiosSequentially() {
+            let currentIndex = 0;
+
+            function playNext() {
+              if (currentIndex < audioArray.length) {
+                audioArray[currentIndex].play();
+                audioArray[currentIndex].onended = () => {
+                  currentIndex++;
+                  playNext(); // Reproducir el siguiente audio cuando el actual termine
+                };
+              }
+            }
+
+            playNext(); // Iniciar la reproducción
+          }
 
           let toggle2 = true;
 
           function loop() {
             if (toggle2) {
-              audio.play();
+              playAllAudiosSequentially();
             }
             toggle2 = !toggle2;
           }
@@ -209,7 +242,7 @@
           document
             .getElementById("play-music")
             .addEventListener("click", function () {
-              audio.play();
+              playAllAudiosSequentially();
               autoScroll();
             });
           let autoScrollActive = true; // Variable para controlar el estado del auto-scroll
@@ -218,7 +251,7 @@
           document
             .getElementById("pause-music")
             .addEventListener("click", function () {
-              audio.pause();
+              audioArray.forEach((audio) => audio.pause());
               stopAutoScroll();
             });
 
